@@ -5,7 +5,7 @@ provider "azurerm" {
   features {}
 }
 
-resource "azurerm_mysql_server" "devopsdatabase" {
+resource "azurerm_mssql_server" "devopsdatabase" {
   name                = var.db_name
   location            = var.location
   resource_group_name = var.rg_name
@@ -26,10 +26,10 @@ resource "azurerm_mysql_server" "devopsdatabase" {
 }
 
 
-resource "azurerm_mysql_firewall_rule" "firewallrule" {
+resource "azurerm_mssql_firewall_rule" "firewallrule" {
   name                = "office"
-  resource_group_name = azurerm_mysql_server.devopsdatabase.resource_group_name
-  server_name         = azurerm_mysql_server.devopsdatabase.name
+  resource_group_name = azurerm_mssql_server.devopsdatabase.resource_group_name
+  server_name         = azurerm_mssql_server.devopsdatabase.name
   start_ip_address    = var.ip_address
   end_ip_address      = var.ip_address
 }
